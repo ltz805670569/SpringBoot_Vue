@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.itxdl.mapper.UserMapper">
+    <select id="findById" parameterType="Integer" resultType="cn.itxdl.bean.User">
+        select id,username,password,sex,phone,email,status  from tb_user where id = #{id}
+    </select>
+    <select id="findAll" resultType="cn.itxdl.bean.User">
+        select id,username,password,sex,phone,email,status from tb_user
+    </select>
+    <insert id="addUser">
+        insert into tb_user(username, password, sex, phone, email) VALUE (#{username},#{password},#{sex},#{phone},#{email})
+    </insert>
+    <update id="updateUser">
+        update tb_user set username=#{username},password=#{password},sex=#{sex},phone=#{phone},email=#{email} where id=#{id}
+    </update>
+    <delete id="deleteUser">
+        delete from tb_user where id=#{id}
+    </delete>
+</mapper>

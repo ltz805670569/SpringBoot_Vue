@@ -1,0 +1,14 @@
+/*body{*/
+/*    text-align: center;*/
+/*}*/
+#main{
+    padding: 30px;
+}
+.add{
+    position: relative;
+    left: 1175px;
+}
+.page{
+    width: 200px;
+    margin: 0 auto;
+}
