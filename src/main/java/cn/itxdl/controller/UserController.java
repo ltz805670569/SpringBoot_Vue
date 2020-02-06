@@ -20,9 +20,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    private User user;
+
     @GetMapping(value = "/selOne")
-    public User selOne(int id){
-        return userService.findById(id);
+    public List<User> selOne(int userId){
+        return userService.findById(userId);
     }
 
     @GetMapping(value = "/selAll")
@@ -56,6 +58,19 @@ public class UserController {
             map.put("msg","fail");
         }
         return map;
+    }
+
+    @PostMapping(value = "/updateTransfer")
+    public Map<String,String> updateTransfer(int id,String username,String password,String sex,String phone,String email,int status){
+        Map<String,String> map = new HashMap<>();
+        this.user = new User(id,username,password,sex,phone,email,status);
+        map.put("msg","success");
+        return map;
+    }
+
+    @GetMapping(value = "/toUpdateFront")
+    public User toUpdateFront(){
+        return this.user;
     }
 
     @PostMapping(value = "/updateUser")

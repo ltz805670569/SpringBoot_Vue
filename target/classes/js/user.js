@@ -2,41 +2,29 @@ var pages;
 var pageSize;
 var pageNum;
 
-var m = new Vue({
-   el:"#ceshi",
-   data:{
-       hello:"hello"
-   }
-});
 
-var v = new Vue({
-    el: "#main",
-    data: {
-        heihei:"",
-        hello:"hello"
-    }
-    // methods: {
-    //     selAll: function () {
-    //
-    //     }
-    // },
-    // mounted() {
-    //     this.selAll();
-    // }
-});
 
-$(function () {
-    $.ajax({
-        url: "selAll",
-        type: "get",
-        success: function (data) {
-            pages = data.pages;
-            pageSize = data.pageSize;
-            pageNum = data.pageNum;
-            v.heihei = data.userList;
-            console.log(v.heihei);
+var form_data = new Vue({
+    el:"#form_data",
+    data:{
+        userId:"",
+    },
+    methods:{
+        selUser:function(){
+            alert("函数执行了");
+            $.ajax({
+                url:"selOne",
+                type:"get",
+                data:{"userId":form_data.userId},
+                success:function(data){
+                    table.arr = data;
+                }
+            });
         }
-    });
+    },
+    init(){
+      this.selUser();
+    }
 });
 
 function pageCount(args) {
@@ -58,13 +46,14 @@ function pageCount(args) {
     }
 }
 
-// function selPage(num) {
-//     $.ajax({
-//         url:"selPage",
-//         type:"get",
-//         data:{"pageNum":pageNum,"pageSize":pageSize},
-//         success:function (data) {
-//             table.arr = data;
-//         }
-//     });
-// }
+function selPage(num) {
+    $.ajax({
+        url:"selPage",
+        type:"get",
+        data:{"pageNum":pageNum,"pageSize":pageSize},
+        success:function (data) {
+            table.arr = data;
+        }
+    });
+}
+

@@ -11,4 +11,15 @@ public class PageController {
     public String toIndex(){
         return "index";
     }
+
+    @RequestMapping(value = "/toAdd",method = RequestMethod.GET)
+    public String toAdd(){
+        return "add";
+    }
+
+    @RequestMapping(value = "/toUpdate")
+    public String toUpdate(){
+        return "update";
+    }
+
 }
